@@ -1,3 +1,5 @@
+# https://pytorch-tutorial.readthedocs.io/en/latest/tutorial/chapter03_intermediate/3_2_2_cnn_resnet_cifar10/
+
 import torch
 import torch.nn as nn
 
