@@ -65,6 +65,7 @@ class ResNet2(nn.Module):
         super(ResNet2, self).__init__()
         n = (depth - 2) // 9
         nstages = [16, 64, 128, 256]
+        self.activ = activ
         # one conv at the beginning (spatial size: 32x32)
         self.conv1 = nn.Conv2d(3, nstages[0], kernel_size=3, stride=1,
                                padding=1, bias=False)
@@ -78,7 +79,6 @@ class ResNet2(nn.Module):
         self.layer3 = self._make_layer(block, nstages[2], nstages[3], n, stride=2)
         # Stage 3 (spatial size: 8x8)
         self.bn = nn.BatchNorm2d(nstages[3])
-        self.activ = activ
         # classifier
         self.avgpool = nn.AvgPool2d(8)
         self.fc = nn.Linear(nstages[3], output_classes)
