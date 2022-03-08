@@ -118,6 +118,6 @@ class ResNet(nn.Module):
         return x
 
 
-def resnet_164(output_classes):
-    model = ResNet(Bottleneck, 164, output_classes)
+def resnet_164(activ, output_classes=10):
+    model = ResNet(Bottleneck, 164, activ, output_classes)
     return model
