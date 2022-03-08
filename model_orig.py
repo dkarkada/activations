@@ -7,12 +7,12 @@ import math
 # the model definition
 # see HeKaiming's implementation using torch: 
 # https://github.com/KaimingHe/resnet-1k-layers/blob/master/README.md
-class Bottleneck(nn.Module):
+class Bottleneck2(nn.Module):
     expansion = 4  # # output cahnnels / # input channels
 
     def __init__(self, inplanes, outplanes, activ, stride=1):
         assert outplanes % self.expansion == 0
-        super(Bottleneck, self).__init__()
+        super(Bottleneck2, self).__init__()
         self.inplanes = inplanes
         self.outplanes = outplanes
         self.bottleneck_planes = outplanes // self.expansion
@@ -59,10 +59,10 @@ class Bottleneck(nn.Module):
         return out
 
 
-class ResNet(nn.Module):
+class ResNet2(nn.Module):
     def __init__(self, block, depth, activ=nn.ReLU, output_classes=10):
         assert (depth - 2) % 9 == 0  # 164 or 1001
-        super(ResNet, self).__init__()
+        super(ResNet2, self).__init__()
         n = (depth - 2) // 9
         nstages = [16, 64, 128, 256]
         # one conv at the beginning (spatial size: 32x32)
@@ -119,5 +119,5 @@ class ResNet(nn.Module):
 
 
 def resnet_164(activ, output_classes=10):
-    model = ResNet(Bottleneck, 164, activ, output_classes)
+    model = ResNet2(Bottleneck2, 164, activ, output_classes)
     return model
